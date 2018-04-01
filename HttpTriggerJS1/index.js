@@ -31,7 +31,9 @@ module.exports = function (context, req) {
         // send mail with defined transport object
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                return context.log(error);
+                context.log(error);
+                context.done();
+                return;
             }
             context.log('Message sent: %s', info.messageId);
             // Preview only available when sending through an Ethereal account
@@ -39,22 +41,20 @@ module.exports = function (context, req) {
 
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+            if (req.query.name || (req.body && req.body.name)) {
+                context.res = {
+                    // status: 200, /* Defaults to 200 */
+                    body: {message: "Hello " + (req.query.name || req.body.name)}
+                };
+            }
+            else {
+                context.res = {
+                    status: 400,
+                    body: "Please pass a name on the query string or in the request body"
+                };
+            }          
+            context.done();    
         });
     });
-
-
-
-    if (req.query.name || (req.body && req.body.name)) {
-        context.res = {
-            // status: 200, /* Defaults to 200 */
-            body: {message: "Hello " + (req.query.name || req.body.name)}
-        };
-    }
-    else {
-        context.res = {
-            status: 400,
-            body: "Please pass a name on the query string or in the request body"
-        };
-    }
-    context.done();
 };
