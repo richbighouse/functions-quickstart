@@ -5,3 +5,7 @@ The code in the this repository supports the Azure Functions quickstart topic [C
 ## Contributing
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+https://jt-function-test.azurewebsites.net/
+https://jt-function-test.scm.azurewebsites.net
+https://jt-function-test.azurewebsites.net/api/HttpTriggerJS1
